@@ -24,7 +24,8 @@
 #define DELAY_ms_LOOP(x) ((SystemCoreClock/4000)*x)  
 void _delay(uint32_t _ms)
 {  
-	for (uint32_t i = DELAY_ms_LOOP(_ms); i; i--) __nop();
+	uint32_t i = 0;
+	for ( i = DELAY_ms_LOOP(_ms); i; i--) __nop();
 }
 //==============================================================================
 
@@ -68,7 +69,7 @@ int main(void)
 
 //==============================================================================
 #ifdef  USE_FULL_ASSERT
-void assert_failed(char * file, uint32_t line) {
+void assert_failed(uint8_t * file, uint32_t line) {
   while (1)
   {}
 }

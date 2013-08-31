@@ -117,12 +117,13 @@
 #define  __stm32f_stpdrv_h    // DO NOT CHANGE
 
 // USER EDIT - Edit the line below to reflect your hardware
-#include "stm32f4xx.h"
+//#include "stm32f4xx.h"
 //#include "stm32f3xx.h"
 //#include "stm32f2xx.h"
+#include "stm32f10x.h"
 
 // USER EDIT - Comment the line below if not using STM32F4Discovey board
-#include "stm32f4_discovery.h"
+//#include "stm32f4_discovery.h"
 
 
 // USER EDIT - Edit the 8 lines below to reflect your hardware
