@@ -1,0 +1,10 @@
+*~
+*.d
+*.elf
+*.o
+*.directory
+*.config
+*.creator
+*.user
+*.files
+*.includes
