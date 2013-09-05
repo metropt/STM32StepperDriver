@@ -8,7 +8,7 @@ ASFLAGS = -g
 # object files
 
 OBJS=  $(STARTUP) main.o
-OBJS+= stm32f10x_gpio.o stm32f10x_rcc.o stm32f10x_tim.o stm32f_stpdrv.o
+OBJS+= stm32f10x_gpio.o stm32f10x_rcc.o stm32f10x_tim.o misc.o stm32f_stpdrv.o
 
 LDLIBS+= -lm
 

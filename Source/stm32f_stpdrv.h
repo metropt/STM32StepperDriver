@@ -23,15 +23,15 @@
    ===================================================================
 	                    Description (in portuguese) 
    ===================================================================
-	- 	STM32Fx compatÌvel (usa "StdPeriph Lib" da ST - n„o testado com o STM32F0xx)
+	- 	STM32Fx compat√≠vel (usa "StdPeriph Lib" da ST - n√£o testado com o STM32F0xx)
 	- 	Funciona com stepper ICs que usam a interface SD (translator, ou com inputs "Step" e "Dir")
 	- 	Controla 2 motores totalmente independentes 
-	- 	Rampa de aceleraÁ„o e desaceleraÁ„o configur·vel e independente para cada motor (um pode estar a
+	- 	Rampa de acelera√ß√£o e desacelera√ß√£o configur√°vel e independente para cada motor (um pode estar a
 		acelerar e o outro a desacelerar)
 	-  Velocidades de 2 a 1000 passos por segundo (pode ser alterado)
-	-  Velocidade constante (Move) ou posicionamento (Goto) independente e simult‚nea para os dois motores
-	- 	Contador com a posiÁ„o actual do motor (respeita a direcÁ„o dos movimentos)
-	- 	DirecÁ„o CW (clockwise) ou CCW (counterclockwise )
+	-  Velocidade constante (Move) ou posicionamento (Goto) independente e simult√¢nea para os dois motores
+	- 	Contador com a posi√ß√£o actual do motor (respeita a direc√ß√£o dos movimentos)
+	- 	Direc√ß√£o CW (clockwise) ou CCW (counterclockwise )
 	- 	Usa somente um TIMER (TIMER3, pode ser alterado) 
 	- 	Permite assignar qualquer pino IO para DIR e STEP
 	- 	E mais umas cenas ...
@@ -41,9 +41,9 @@
                        How to use this driver
    ===================================================================       
 	1 - Editar o ficheiro stm32f_stpdrv.h e definir o hardware e as preferencias
-	2 - Chamar a funÁ„o STPDRV_Init() para inicializar o wardware e a API
-	3 - Chamar a funÁ„o STPDRV_SetRamp(...) para definir os parametros de cada motor
-	4 - Usar as funÁıes da API para controlar os motores
+	2 - Chamar a fun√ß√£o STPDRV_Init() para inicializar o wardware e a API
+	3 - Chamar a fun√ß√£o STPDRV_SetRamp(...) para definir os parametros de cada motor
+	4 - Usar as fun√ß√µes da API para controlar os motores
 	
 	
    ===================================================================
@@ -56,50 +56,50 @@
 
 
 	void STPDRV_SetRamp(int16_t motor, int16_t rampspeed)
-			Descri: 	Define os par‚metros da curva de aceleraÁ„o/desaceleraÁ„o 
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
-						rampspeed - velocidade da aceleraÁ„o/desaceleraÁ„o em steps/sec/sec
+			Descri: 	Define os par√¢metros da curva de acelera√ß√£o/desacelera√ß√£o 
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
+						rampspeed - velocidade da acelera√ß√£o/desacelera√ß√£o em steps/sec/sec
 			Return:  none
 
 
 	int32_t STPDRV_GetPos(int16_t motor)
-			Descri: 	Para obter a posiÁ„o (contador de passos) actual
-						O valor da posiÁ„o aumenta sempre que o motor avanÁa um passo na
-						direcÁ„o dir_CW e diminui se o motor È movido na direcÁ„o dir_CCW
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
-			Return:  um int32 com o valor da posiÁ„o
+			Descri: 	Para obter a posi√ß√£o (contador de passos) actual
+						O valor da posi√ß√£o aumenta sempre que o motor avan√ßa um passo na
+						direc√ß√£o dir_CW e diminui se o motor √© movido na direc√ß√£o dir_CCW
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
+			Return:  um int32 com o valor da posi√ß√£o
 
 
 	int32_t STPDRV_GetDir(int16_t motor)
-			Descri: 	Para obter a direcÁ„o de movimento actual ou a ultima usada se o motor
+			Descri: 	Para obter a direc√ß√£o de movimento actual ou a ultima usada se o motor
 						estiver parado
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
 			Return:  dir_CW (clockwise) ou dir_CCW (counterclockwise)
 
 
 	mstate_t	STPDRV_GetState(int16_t motor)
 			Descri: 	Para obter o estado actual do motor
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
-			Return:  mstat_Stop = motor est· parado, mstat_Move = motor est· em movimento
-						mstat_GoTo  = motor est· em movimento para uma determinada posiÁ„o em
-						consequÍncia de um comando "STPDRV_Goto(...)"
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
+			Return:  mstat_Stop = motor est√° parado, mstat_Move = motor est√° em movimento
+						mstat_GoTo  = motor est√° em movimento para uma determinada posi√ß√£o em
+						consequ√™ncia de um comando "STPDRV_Goto(...)"
 
 
 	void STPDRV_Move(int16_t motor, mdir_t direction, int16_t speed)
    		Descri: 	Para mover o motor. Depois de executado este comando o motor fica a rodar
-						no sentido indicado · velocidade indicada
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
+						no sentido indicado √° velocidade indicada
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
 						direction - sentido em que o motor deve rodar, pode ser dir_CW ou dir_CCW
-						speed - velocidade de rotaÁ„o em steps/sec
+						speed - velocidade de rota√ß√£o em steps/sec
 			Return:  none
 
 
 	void STPDRV_Goto(int16_t motor, int32_t position, int16_t speed, mdir_t movedir)
-   		Descri: 	Move o motor para uma determinada posiÁ„o. Depois de executado este comando
-						o motor move · velocidade indicada atÈ ser atingida a posiÁ„o indicada
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
-						position - posiÁ„o onde o motor deve parar
-						speed - velocidade de rotaÁ„o maxima em steps/sec
+   		Descri: 	Move o motor para uma determinada posi√ß√£o. Depois de executado este comando
+						o motor move √° velocidade indicada at√© ser atingida a posi√ß√£o indicada
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
+						position - posi√ß√£o onde o motor deve parar
+						speed - velocidade de rota√ß√£o maxima em steps/sec
 						movedir - sentido em que o motor deve rodar, pode ser dir_CW ou dir_CCW ou
 						ainda dir_ANY para usar o sentido mais curto
 			Return:  none
@@ -107,8 +107,8 @@
 
 	void STPDRV_Stop(int16_t motor, int16_t hardstop)
 			Descri: 	Para parar o motor 
-			 Parms: 	motor - motor em quest„o, MOTOR1 ou MOTOR2
-						hardstop - se "1" p·ra o motor imediatamente, se "0" p·ra o motor com desaceleraÁ„o
+			 Parms: 	motor - motor em quest√£o, MOTOR1 ou MOTOR2
+						hardstop - se "1" p√°ra o motor imediatamente, se "0" p√°ra o motor com desacelera√ß√£o
 			Return: none
 	
 	
@@ -120,7 +120,11 @@
 //#include "stm32f4xx.h"
 //#include "stm32f3xx.h"
 //#include "stm32f2xx.h"
-#include "stm32f10x.h"
+#include <stm32f10x.h>
+#include <stm32f10x_rcc.h>
+#include <stm32f10x_gpio.h>
+#include <stm32f10x_tim.h>
+#include <misc.h>
 
 // USER EDIT - Comment the line below if not using STM32F4Discovey board
 //#include "stm32f4_discovery.h"
@@ -159,9 +163,9 @@ typedef enum 	{mstat_Stop  = (int8_t) 0, mstat_Move  = (int8_t) 1, mstat_GoTo  =
 //-----------------------------------------------------------------------------
 // Motors
 #define STPDRV_TIM          	TIM3
-#define STPDRV_TIMFREQ        100000   // 200Khz reais uma vez que funciona em "togle", resoluÁ„o final de 10us entre steps
-#define STPDRV_MINSETPSEC     2        // minimo de steps/sec, deve satisfazer a condiÁ„o: STPDRV_TIMFREQ / STPDRV_MINSETPSEC < 65535
-#define STPDRV_MAXSETPSEC     1000     // maximo de steps/sec, deve satisfazer a condiÁ„o: STPDRV_TIMFREQ / STPDRV_MAXSETPSEC > 100
+#define STPDRV_TIMFREQ        100000   // 200Khz reais uma vez que funciona em "togle", resolu√ß√£o final de 10us entre steps
+#define STPDRV_MINSETPSEC     2        // minimo de steps/sec, deve satisfazer a condi√ß√£o: STPDRV_TIMFREQ / STPDRV_MINSETPSEC < 65535
+#define STPDRV_MAXSETPSEC     1000     // maximo de steps/sec, deve satisfazer a condi√ß√£o: STPDRV_TIMFREQ / STPDRV_MAXSETPSEC > 100
 #define STPDRV_TIM_APB      	RCC_APB1Periph_TIM3 // APB clock do timer usado
 
 
