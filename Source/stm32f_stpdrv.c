@@ -78,10 +78,14 @@ void STPDRV_Init(void)
     SystemCoreClockUpdate();
 
     //----- GPIO AHB1Periph clock enable
-    RCC_AHB1PeriphClockCmd(__GPIO2AHB1Periph(MOTOR1_STEP_PORT) , ENABLE);
+    /*RCC_AHB1PeriphClockCmd(__GPIO2AHB1Periph(MOTOR1_STEP_PORT) , ENABLE);
     RCC_AHB1PeriphClockCmd(__GPIO2AHB1Periph(MOTOR1_DIR_PORT)  , ENABLE);
     RCC_AHB1PeriphClockCmd(__GPIO2AHB1Periph(MOTOR2_STEP_PORT) , ENABLE);
-    RCC_AHB1PeriphClockCmd(__GPIO2AHB1Periph(MOTOR2_DIR_PORT)  , ENABLE);
+    RCC_AHB1PeriphClockCmd(__GPIO2AHB1Periph(MOTOR2_DIR_PORT)  , ENABLE);*/
+    RCC_APB2PeriphClockCmd(__GPIO2AHB1Periph(MOTOR1_STEP_PORT) , ENABLE);
+    RCC_APB2PeriphClockCmd(__GPIO2AHB1Periph(MOTOR1_DIR_PORT)  , ENABLE);
+    RCC_APB2PeriphClockCmd(__GPIO2AHB1Periph(MOTOR2_STEP_PORT) , ENABLE);
+    RCC_APB2PeriphClockCmd(__GPIO2AHB1Periph(MOTOR2_DIR_PORT)  , ENABLE);
 
     // GPIO Configuration - Step PINs & DIR PINs
     //GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
@@ -452,17 +456,23 @@ static uint32_t __GPIO2AHB1Periph(GPIO_TypeDef *_qual)
     uint32_t ret = (uint32_t) 0x00;
 
     if (_qual == GPIOA)
-        ret = RCC_AHB1Periph_GPIOA;
+        //ret = RCC_AHB1Periph_GPIOA;
+        ret = RCC_APB2Periph_GPIOA;
     else if (_qual == GPIOB)
-        ret = RCC_AHB1Periph_GPIOB;
+        //ret = RCC_AHB1Periph_GPIOB;
+        ret = RCC_APB2Periph_GPIOB;
     else if (_qual == GPIOC)
-        ret = RCC_AHB1Periph_GPIOC;
+        //ret = RCC_AHB1Periph_GPIOC;
+        ret = RCC_APB2Periph_GPIOC;
     else if (_qual == GPIOD)
-        ret = RCC_AHB1Periph_GPIOD;
+        //ret = RCC_AHB1Periph_GPIOD;
+        ret = RCC_APB2Periph_GPIOD;
     else if (_qual == GPIOE)
-        ret = RCC_AHB1Periph_GPIOE;
+        //ret = RCC_AHB1Periph_GPIOE;
+        ret = RCC_APB2Periph_GPIOE;
     else if (_qual == GPIOF)
-        ret = RCC_AHB1Periph_GPIOF;
+        //ret = RCC_AHB1Periph_GPIOF;
+        ret = RCC_APB2Periph_GPIOA;
 #if defined(STM32F2XX) || defined(STM32F40XX) || defined(STM32F427X) || defined (STM32F429X)
     else if (_qual == GPIOG)
         ret = RCC_AHB1Periph_GPIOG;
